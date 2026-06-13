@@ -1,0 +1,95 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    max-width: 1280px;
+    margin: 40px auto;
+    gap: 20px;
+}
+
+
+
+.video-card {
+    position: relative;
+    flex: 1;
+    height: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+}
+
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(180deg, transparent, #f4f4f4);
+    color: #ffffff;
+    opacity: 0.6;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    transition: opacity 0.3s ease;
+}
+
+
+.Main-video {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+    height: auto;
+}
+
+
+.Main-video video {
+    width: 100%;
+    width: 800px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+    object-fit: cover;
+
+}
+
+.Main-video .game-title {
+    color: #FF7F00;
+    font-family: "Judson", sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 35px;
+    margin-top: 0;
+}
+
+/* ================= (Hover) ================= */
+
+/* I used GEMINI for this transition */
+
+.video-card:hover {
+    flex: 1.8;
+    box-shadow: 0 20px 40px rgba(255, 127, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.video-card:hover video {
+    transform: scale(1.05);
+}
+
+.video-card:hover .video-overlay {
+    opacity: 1;
+}
