@@ -1,0 +1,58 @@
+.app-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    margin-bottom: 70px;
+    width: 100%;
+}
+
+.app-title {
+    display: flex;
+    justify-content: center;
+
+}
+
+h1 {
+    font-family: "Judson";
+    color: rgb(0, 0, 0)
+}
+
+span {
+    color: #FF7F00;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 100px;
+}
+
+.app {
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.img-caption {
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+
+.img-caption img {
+    width: 406px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.img-caption p {
+    width: 406px;
+}
