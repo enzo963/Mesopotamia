@@ -1,3 +1,29 @@
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
 .app-container {
     display: flex;
     flex-direction: row;
@@ -6,29 +32,28 @@
     padding-top: 50px;
     margin-bottom: 70px;
     width: 100%;
+    gap: 100px;
+
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
 }
 
 .app-title {
     display: flex;
     justify-content: center;
 
+    opacity: 0;
+    animation: fadeInDown 0.8s ease-out 0.2s forwards;
 }
 
-h1 {
-    font-family: "Judson";
-    color: rgb(0, 0, 0)
+.app-title h1 {
+    font-family: "Judson", serif;
+    color: rgb(0, 0, 0);
+    margin: 0;
 }
 
-span {
+.app-title span {
     color: #FF7F00;
-}
-
-.app-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 100px;
 }
 
 .app {
@@ -44,15 +69,28 @@ span {
     justify-content: flex-end;
     align-items: center;
     width: 100%;
+
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.4s forwards;
 }
 
-
 .img-caption img {
-    width: 406px;
+    width: 550px;
     height: auto;
     border-radius: 4px;
+
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.img-caption img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .img-caption p {
-    width: 406px;
+    width: 550px;
+    font-family: "Judson", serif;
+    color: #000000;
+    margin: 0;
+    text-align: center;
 }

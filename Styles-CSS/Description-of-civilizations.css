@@ -1,3 +1,38 @@
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandWidth {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+
 .Description-of-civilizations {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -5,6 +40,8 @@
     max-width: 967px;
     margin: 60px auto;
     align-items: start;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.2s forwards;
 }
 
 .Description-of-civilizations img {
@@ -12,26 +49,30 @@
     height: 210px;
     object-fit: cover;
     border-radius: 8px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.Description-of-civilizations img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .Description-of-civilizations p {
     font-family: "Judson", serif;
     font-size: 16px;
+    padding-top: 15px;
     line-height: 1.5;
     color: #000000;
     text-align: left;
     margin: 0;
 }
 
-
-
-
 .game-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-
+    opacity: 0;
+    animation: fadeInDown 0.8s ease-out forwards;
 }
 
 .game-title h1 {
@@ -41,8 +82,6 @@
 }
 
 .game-title span {
-    font-family: "Judson", sans-serif;
-    font-size: 40px;
     color: #FF7F00;
 }
 
@@ -53,6 +92,8 @@
     justify-content: center;
     gap: 20px;
     padding-bottom: 40px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.4s forwards;
 }
 
 .text-action p {
@@ -65,7 +106,6 @@
     margin: 0;
 }
 
-
 .text-action .get-now-btn {
     background-color: #000000;
     color: #ffffff;
@@ -75,9 +115,14 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
+.text-action .get-now-btn:hover {
+    background-color: #FF7F00;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(255, 127, 0, 0.3);
+}
 
 .Rectangle-orange {
     background-color: #FF7F00;
@@ -85,4 +130,6 @@
     height: 15px;
     width: 100%;
     margin-bottom: 40px;
+    transform-origin: left;
+    animation: expandWidth 1.2s ease-in-out forwards;
 }

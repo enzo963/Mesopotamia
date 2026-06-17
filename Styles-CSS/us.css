@@ -1,4 +1,19 @@
-/* الحاوية الرئيسية لقسم الفريق */
+.our-team-sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: "Judson";
+}
+
+.our-team-sec p {
+    padding-bottom: 25px;
+}
+
+.our-team-sec span {
+    color: #ff8000;
+}
+
 .our-team {
     display: flex;
     flex-wrap: wrap;
@@ -9,7 +24,7 @@
 }
 
 .team-card {
-    background-color: #ED9238;
+    background-color: #ff8000;
     width: 260px;
     height: 520px;
     border-radius: 24px;
@@ -30,7 +45,7 @@
 .member-img-box {
     width: 130px;
     height: 130px;
-    border-radius: 50px;
+    border-radius: 90px;
     overflow: hidden;
     border: 4px solid rgba(255, 255, 255, 0.3);
     margin-bottom: 16px;
@@ -92,5 +107,5 @@
     object-fit: contain;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 6px;
-    border-radius: 50%;
+    border-radius: 30%;
 }

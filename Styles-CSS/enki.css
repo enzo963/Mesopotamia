@@ -1,52 +1,678 @@
-.enki-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 40px;
-    gap: 20px;
+/* ==========================================
+   ENKI AI SECTION — ENHANCED MAGIC EDITION
+   Colors: #FF7F00 (Orange) × #8B5CF6 (Purple)
+   ========================================== */
+
+/* ── KEYFRAMES ── */
+
+@keyframes rotateEnergy {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
+
+@keyframes rotateSlow {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+@keyframes auraPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: .55;
+    }
+
+    50% {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+}
+
+@keyframes floatCharacter {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes plasmaShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes shimmerSweep {
+    0% {
+        left: -100%;
+    }
+
+    60%,
+    100% {
+        left: 130%;
+    }
+}
+
+@keyframes electricPulse {
+
+    0%,
+    100% {
+        border-left-color: #FF7F00;
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, .35),
+            -8px 0 40px rgba(255, 127, 0, .12);
+    }
+
+    50% {
+        border-left-color: #8B5CF6;
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, .35),
+            -8px 0 40px rgba(139, 92, 246, .2);
+    }
+}
+
+@keyframes topLinePulse {
+
+    0%,
+    100% {
+        background: #FF7F00;
+        width: 90px;
+    }
+
+    50% {
+        background: #8B5CF6;
+        width: 130px;
+    }
+}
+
+@keyframes borderDraw {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+/* Orbiting particles */
+@keyframes orbOrbit1 {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(220px);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(220px);
+    }
+}
+
+@keyframes orbOrbit2 {
+    from {
+        transform: translate(-50%, -50%) rotate(120deg) translateX(260px);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(480deg) translateX(260px);
+    }
+}
+
+@keyframes orbOrbit3 {
+    from {
+        transform: translate(-50%, -50%) rotate(240deg) translateX(190px);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(600deg) translateX(190px);
+    }
+}
+
+/* Star twinkle */
+@keyframes twinkle1 {
+
+    0%,
+    100% {
+        opacity: .2;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+@keyframes twinkle2 {
+
+    0%,
+    100% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: .1;
+    }
+}
+
+/* Character color-shift glow */
+@keyframes characterGlow {
+
+    0%,
+    100% {
+        filter:
+            drop-shadow(0 0 25px rgba(255, 127, 0, .55)) drop-shadow(0 0 50px rgba(111, 66, 193, .3)) drop-shadow(0 30px 40px rgba(0, 0, 0, .45));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 35px rgba(139, 92, 246, .75)) drop-shadow(0 0 70px rgba(255, 127, 0, .4)) drop-shadow(0 30px 40px rgba(0, 0, 0, .45));
+    }
+}
+
+/* Scan line sweep */
+@keyframes scanLine {
+    0% {
+        top: -5%;
+    }
+
+    100% {
+        top: 110%;
+    }
+}
+
+/* Gradient text shimmer */
+@keyframes textGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ── SECTION ── */
+
+.enki-section {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+
+    width: 100%;
+    max-width: 1600px;
+    margin: 120px auto;
+    padding: 100px 60px;
+    overflow: visible;
+}
+
+/* ── LAYER 1: Deep plasma glow (pulsing) ── */
+.enki-section::before {
+    content: "";
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background:
+        radial-gradient(circle,
+            rgba(255, 127, 0, .18) 0%,
+            rgba(139, 92, 246, .14) 35%,
+            rgba(111, 66, 193, .08) 55%,
+            transparent 75%);
+    filter: blur(40px);
+    z-index: 0;
+    animation: auraPulse 8s ease-in-out infinite;
+}
+
+/* ── LAYER 2: Dual conic-gradient ring (rotating) ── */
+.enki-section::after {
+    content: "";
+    position: absolute;
+    width: 1100px;
+    height: 1100px;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background:
+        conic-gradient(from 0deg,
+            transparent 0deg,
+            rgba(255, 127, 0, .22) 60deg,
+            transparent 120deg,
+            rgba(139, 92, 246, .22) 180deg,
+            transparent 240deg,
+            rgba(255, 127, 0, .18) 300deg,
+            transparent 360deg);
+    animation: rotateEnergy 20s linear infinite;
+    z-index: 0;
+}
+
+/* ── EXTRA ELEMENTS (add to HTML) ── */
+
+/* Counter-rotating inner ring */
+.enki-ring-inner {
+    position: absolute;
+    width: 750px;
+    height: 750px;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background:
+        conic-gradient(from 90deg,
+            transparent,
+            rgba(139, 92, 246, .28),
+            transparent,
+            rgba(255, 127, 0, .22),
+            transparent);
+    animation: rotateSlow 15s linear infinite;
+    z-index: 0;
+}
+
+/* Static glowing border ring */
+.enki-ring-border {
+    position: absolute;
+    width: 860px;
+    height: 860px;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 127, 0, .12);
+    box-shadow:
+        inset 0 0 60px rgba(255, 127, 0, .06),
+        0 0 40px rgba(139, 92, 246, .06);
+    animation: auraPulse 7s ease-in-out infinite reverse;
+    z-index: 0;
+}
+
+/* ── ORBITING PARTICLES ── */
+
+.enki-orb {
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.enki-orb-1 {
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #FF7F00, rgba(255, 127, 0, 0));
+    box-shadow: 0 0 12px #FF7F00, 0 0 28px rgba(255, 127, 0, .5);
+    animation: orbOrbit1 12s linear infinite;
+}
+
+.enki-orb-2 {
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #8B5CF6, rgba(139, 92, 246, 0));
+    box-shadow: 0 0 12px #8B5CF6, 0 0 28px rgba(139, 92, 246, .5);
+    animation: orbOrbit2 18s linear infinite;
+}
+
+.enki-orb-3 {
+    width: 7px;
+    height: 7px;
+    background: radial-gradient(circle, #FF9F40, rgba(255, 159, 64, 0));
+    box-shadow: 0 0 8px #FF9F40;
+    animation: orbOrbit3 10s linear infinite;
+}
+
+/* ── SPARKLE STARS (sprinkle in HTML as .enki-star) ── */
+
+.enki-star {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ── SCAN LINE ── */
+
+.enki-scan {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(255, 127, 0, .18),
+            rgba(139, 92, 246, .22),
+            rgba(255, 127, 0, .18),
+            transparent);
+    filter: blur(1px);
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    animation: scanLine 9s linear infinite;
+}
+
+/* ==========================================
+   APP IMAGE
+   ========================================== */
 
 .app-sec {
     flex: 1;
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
 .app-sec img {
-    width: 600px;
-    height: auto;
+    width: 500px;
+    border-radius: 28px;
+
+    transform: perspective(1200px) rotateY(-10deg);
+    transition: all .8s cubic-bezier(.25, .46, .45, .94);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, .3),
+        0 0 0 1px rgba(255, 127, 0, .15);
 }
 
+.enki-section:hover .app-sec img {
+    transform: perspective(1200px) rotateY(0deg) scale(1.05);
+
+    box-shadow:
+        0 0 60px rgba(255, 127, 0, .3),
+        0 25px 70px rgba(0, 0, 0, .35),
+        0 0 0 1px rgba(255, 127, 0, .35);
+}
+
+/* ==========================================
+   TEXT SECTION
+   ========================================== */
+
 .text-sec {
-    flex: 1.5;
-    max-width: 500px;
+    flex: 1.2;
+    max-width: 560px;
+    position: relative;
+    z-index: 2;
+
+    padding: 40px;
+    border-radius: 28px;
+    overflow: hidden;
+
+    background:
+        linear-gradient(145deg,
+            rgba(255, 255, 255, .93),
+            rgba(255, 127, 0, .05));
+
+    border: 1px solid rgba(255, 127, 0, .18);
+    border-left: 5px solid #FF7F00;
+    backdrop-filter: blur(20px);
+
+    /* Electric pulse: orange ↔ purple border glow */
+    animation: electricPulse 6s ease-in-out infinite;
+
+    transition: transform .5s ease;
 }
 
 .text-sec p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #333333;
-    text-align: left;
+    text-align: center;
 }
+
+.text-sec:hover {
+    transform: translateY(-12px);
+}
+
+/* Animated top accent bar */
+.text-sec::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 36px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF7F00, #8B5CF6);
+    border-radius: 0 0 4px 4px;
+    transform-origin: left;
+    animation:
+        borderDraw .8s ease-out forwards,
+        topLinePulse 6s ease-in-out 1s infinite;
+}
+
+/* Shimmer sweep overlay */
+.text-sec::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    width: 60px;
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(255, 127, 0, .07),
+            rgba(139, 92, 246, .09),
+            transparent);
+    transform: skewX(-15deg);
+    animation: shimmerSweep 5s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Gradient text (apply to span inside headings) */
+.text-sec .gradient-text {
+    background:
+        linear-gradient(90deg, #FF7F00, #A855F7, #FF7F00);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textGradientShift 4s ease-in-out infinite;
+}
+
+.text-sec p {
+    font-size: 20px;
+    line-height: 2;
+    color: #333;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   ENKI CHARACTER
+   ========================================== */
 
 .character-sec {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Primary pulsing aura */
+.character-sec::before {
+    content: "";
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle,
+            rgba(255, 127, 0, .32),
+            rgba(139, 92, 246, .2),
+            transparent 70%);
+    animation: auraPulse 5s ease-in-out infinite;
+    z-index: -1;
+}
+
+/* Secondary outer ring */
+.character-sec::after {
+    content: "";
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 127, 0, .14);
+    box-shadow: inset 0 0 50px rgba(139, 92, 246, .08);
+    animation: auraPulse 7s ease-in-out infinite reverse;
+    z-index: -1;
 }
 
 .character-sec img {
-    max-width: 100%;
+    width: 520px;
     height: auto;
+
+    animation:
+        floatCharacter 6s ease-in-out infinite,
+        characterGlow 5s ease-in-out infinite;
+
+    transition: transform .8s cubic-bezier(.25, .46, .45, .94);
 }
 
-.Line-org {
-    height: 10px;
-    color: #FF7F00;
-    background-color: #FF7F00;
-    width: 100%;
-    padding: 18px;
-    margin-bottom: 40px;
+.enki-section:hover .character-sec img {
+    transform: translateY(-22px) scale(1.08);
+}
 
+/* ==========================================
+   DIVIDER
+   ========================================== */
+
+.Line-org {
+    width: 100%;
+    height: 3px;
+    background:
+        linear-gradient(90deg,
+            transparent,
+            #FF7F00,
+            #8B5CF6,
+            #FF7F00,
+            transparent);
+    margin: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Divider shimmer */
+.Line-org::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, .65),
+            transparent);
+    animation: shimmerSweep 3s ease-in-out infinite;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1200px) {
+
+    .enki-section {
+        flex-direction: column;
+        gap: 50px;
+        padding: 50px 20px;
+    }
+
+    .app-sec img {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .character-sec img {
+        width: 320px;
+    }
+
+    .text-sec {
+        max-width: 95%;
+    }
+
+    /* Shrink orbit radii on mobile */
+    @keyframes orbOrbit1 {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg) translateX(130px);
+        }
+
+        to {
+            transform: translate(-50%, -50%) rotate(360deg) translateX(130px);
+        }
+    }
+
+    @keyframes orbOrbit2 {
+        from {
+            transform: translate(-50%, -50%) rotate(120deg) translateX(160px);
+        }
+
+        to {
+            transform: translate(-50%, -50%) rotate(480deg) translateX(160px);
+        }
+    }
+
+    @keyframes orbOrbit3 {
+        from {
+            transform: translate(-50%, -50%) rotate(240deg) translateX(110px);
+        }
+
+        to {
+            transform: translate(-50%, -50%) rotate(600deg) translateX(110px);
+        }
+    }
+}
+
+/* ==========================================
+   REDUCED MOTION RESPECT
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .enki-section::after,
+    .enki-ring-inner,
+    .enki-orb-1,
+    .enki-orb-2,
+    .enki-orb-3,
+    .enki-scan,
+    .text-sec::after,
+    .Line-org::after {
+        animation: none;
+    }
+
+    .character-sec img {
+        animation: none;
+    }
 }

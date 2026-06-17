@@ -14,7 +14,7 @@ body {
     font-family: "Judson", sans-serif;
 }
 
-root {
+:root {
     --primary-color: #FF7F00;
     --secondary-color: #000000;
 }
@@ -49,19 +49,15 @@ root {
 .navbar {
 
     position: fixed;
-
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
-
     display: flex;
     gap: 40px;
-
     padding: 8px;
     padding-left: 20px;
     padding-right: 20px;
     width: 900px;
-
     border-radius: 24px;
 
     background: rgba(255, 255, 255, 0.12);
@@ -81,10 +77,19 @@ root {
             rgba(255, 255, 255, 0.05) 100%);
 
     overflow: hidden;
-
     z-index: 1000;
+}
 
 
+.hero .navbar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar .nav-link {
+    color: inherit;
+    text-decoration: none;
 }
 
 .navbar::before {
@@ -107,21 +112,230 @@ root {
 
 
 
-.navbar p {
+.navbar a {
     color: white;
-    margin-left: 50px;
-    margin-right: 50px;
     text-decoration: none;
     font-family: "Jersey 10", sans-serif;
     font-size: 22px;
     font-weight: 500;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-
+    margin: 0 50px;
 }
 
-.navbar p:hover {
+.navbar a:hover {
     color: #FF7F00;
     text-shadow: 2px 4px 8px #ffcc00b3;
     transition: all 0.3s ease;
+}
+
+/* ==========================================
+   ANIMATIONS & MICRO INTERACTIONS
+========================================== */
+
+/* Navbar Entrance Animation */
+.navbar {
+    animation: navbarFade 1s ease forwards;
+    transition: all 0.4s ease;
+}
+
+@keyframes navbarFade {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Glass Shine Effect */
+.navbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+
+    width: 60%;
+    height: 100%;
+
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.25),
+            transparent);
+
+    transform: skewX(-25deg);
+    pointer-events: none;
+
+    animation: shine 8s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -150%;
+    }
+
+    20% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+/* Navbar Glow */
+.navbar:hover {
+    box-shadow:
+        0 0 20px rgba(255, 127, 0, 0.2),
+        0 0 40px rgba(255, 127, 0, 0.1);
+}
+
+/* Navigation Links */
+.navbar a {
+    position: relative;
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+/* Animated Underline */
+.navbar a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -6px;
+
+    width: 0;
+    height: 2px;
+
+    background: #FF7F00;
+
+    transform: translateX(-50%);
+    transition: width 0.35s ease;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+.navbar a:hover {
+    transform: translateY(-3px);
+    color: #FF7F00;
+    text-shadow:
+        0 0 8px rgba(255, 127, 0, 0.5),
+        0 0 16px rgba(255, 127, 0, 0.3);
+}
+
+/* Hero Background Floating */
+.hero {
+    animation: bgFloat 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgFloat {
+    from {
+        background-position: center 10%;
+    }
+
+    to {
+        background-position: center 13%;
+    }
+}
+
+/* Smooth Fade-In Elements */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.fade-in-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .navbar,
+    .hero,
+    .navbar::after,
+    .fade-in-on-scroll {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+
+
+/* --- Navbar link focus state (keyboard accessibility) --- */
+.navbar p a:focus-visible {
+    outline: 2px solid #FF7F00;
+    outline-offset: 3px;
+    border-radius: 4px;
+    color: #FF7F00;
+}
+
+/* --- Scroll fade-in animation (class added via JS only) ---
+   Applied by JS, so content stays visible if JS doesn't run. */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-in-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --- Navbar mobile responsiveness ---
+The navbar has a hard-coded width: 900px which overflows
+on any screen narrower than ~960px. */
+
+@media (max-width: 960px) {
+    .navbar {
+        width: 92%;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px 14px;
+    }
+
+    .navbar p {
+        margin-left: 14px;
+        margin-right: 14px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 560px) {
+    .navbar {
+        top: 12px;
+        gap: 4px;
+        padding: 7px 10px;
+    }
+
+    .navbar p {
+        margin-left: 8px;
+        margin-right: 8px;
+        font-size: 15px;
+    }
 }
