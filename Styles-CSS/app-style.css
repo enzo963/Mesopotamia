@@ -33,7 +33,6 @@
     margin-bottom: 70px;
     width: 100%;
     gap: 100px;
-
     opacity: 0;
     animation: fadeInUp 1s ease-out forwards;
 }
@@ -77,7 +76,7 @@
 .img-caption img {
     width: 550px;
     height: auto;
-    border-radius: 4px;
+    border-radius: 30px;
 
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
